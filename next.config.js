@@ -2,9 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'standalone',
   images: {
-    unoptimized: false,
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
