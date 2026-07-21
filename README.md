@@ -1,25 +1,70 @@
 # 9th Island Kanaka Wahine
 
-Community platform for 9th Island.
+Community platform for the Hawaiian and Pacific Islander community in Las Vegas.
 
-## Features
+## 🌺 About
 
-- **Next.js 14** with App Router
-- **TypeScript** for type safety
-- **Supabase** for backend and authentication (schema in `/supabase`)
-- **Vercel Speed Insights** for performance monitoring
+A modern, mobile-first web application that serves as a central digital hub for the Hawaiian and Pacific Islander community in Las Vegas. The platform enables:
 
-## Getting Started
+- **Vendors**: Showcase local businesses and manage profiles
+- **Community Members**: Discover events, connect with others, and support local
+- **Events**: Create and manage community gatherings
+- **Marketplace**: Buy and sell local handmade goods
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
+- **Backend**: Supabase (PostgreSQL, Auth, Realtime, Storage)
+- **Deployment**: Vercel
+- **Icons**: Lucide React
+- **Performance**: Vercel Speed Insights
+
+## 📋 Features
+
+### Home Feed
+- Featured vendors
+- Upcoming community events
+- Quick search
+- Community announcements
+
+### Vendor Directory
+- Business profiles with photos
+- Categories (Food, Crafts, Services, etc.)
+- Ratings and reviews
+- Location and hours
+- Contact information
+
+### Community Events
+- Event creation and RSVPs
+- Date, time, location, description
+- Photo galleries
+- Comment sections
+
+### Marketplace
+- Buy and sell local products
+- Item categories
+- User profiles
+- Ratings system
+
+### Additional
+- Interactive community feed
+- Meetup organization
+- Business dashboard
+- Admin moderation tools
+
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js 18+ 
+- Node.js 18+
 - npm, pnpm, yarn, or bun
 
 ### Installation
 
 ```bash
+git clone https://github.com/IDListcreativ/9th-island-kanaka-wahine.git
+cd 9th-island-kanaka-wahine
 npm install
+cp .env.example .env.local
 ```
 
 ### Development
@@ -28,45 +73,41 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the application.
+Open [http://localhost:3000](http://localhost:3000)
 
-### Build
+### Production Build
 
 ```bash
 npm run build
+npm start
 ```
 
-### Lint
+## 🎨 Design System
 
-```bash
-npm run lint
-```
+- **Ocean**: Blues for primary actions
+- **Sand**: Warm neutrals for accents
+- **Island Green**: Teal for highlights
 
-## Vercel Speed Insights
-
-This project includes Vercel Speed Insights for monitoring real-world performance metrics. The `<SpeedInsights />` component is integrated in the root layout (`app/layout.tsx`).
-
-Speed Insights will automatically track:
-- First Contentful Paint (FCP)
-- Largest Contentful Paint (LCP)
-- Cumulative Layout Shift (CLS)
-- First Input Delay (FID)
-- Time to First Byte (TTFB)
-
-Metrics are available in the Vercel dashboard after deployment.
-
-## Database
-
-Database schema and seed data are available in the `/supabase` directory. See `/supabase/README.md` for setup instructions.
-
-## Deployment
-
-Deploy to Vercel:
+## 🚢 Deployment
 
 ```bash
 vercel deploy
 ```
 
-## License
+**Required Environment Variables:**
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+## 📚 Documentation
+
+- [Next.js Docs](https://nextjs.org/docs)
+- [Supabase Docs](https://supabase.com/docs)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+
+## 📝 License
 
 Private repository
+
+---
+
+**Built with ❤️ for the Hawaiian and Pacific Islander community in Las Vegas**

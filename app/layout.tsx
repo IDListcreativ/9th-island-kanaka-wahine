@@ -3,8 +3,16 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '9th Island Kanaka Wahine',
-  description: 'Community platform for 9th Island',
+  title: '9th Island | Hawaiian & Pacific Islander Community Hub',
+  description: 'Discover local vendors, events, and connect with the Hawaiian and Pacific Islander community in Las Vegas.',
+  viewport: 'width=device-width, initial-scale=1',
+  keywords: ['Hawaiian', 'Pacific Islander', 'Community', 'Las Vegas', 'Local Business', 'Events'],
+  openGraph: {
+    title: '9th Island',
+    description: 'Community platform for the Hawaiian and Pacific Islander community in Las Vegas.',
+    url: 'https://9th-island-kanaka-wahine.vercel.app',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
