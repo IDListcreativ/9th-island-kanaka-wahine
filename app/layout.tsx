@@ -1,12 +1,11 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Providers } from '@/app/providers'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: '9th Island | Hawaiian & Pacific Islander Community Hub',
-  description: 'Discover local vendors, events, gatherings, businesses, and community resources in Las Vegas.',
-  viewport: 'width=device-width, initial-scale=1',
+  description: 'Discover local vendors, events, and connect with the Hawaiian and Pacific Islander community in Las Vegas.',
   keywords: ['Hawaiian', 'Pacific Islander', 'Community', 'Las Vegas', 'Local Business', 'Events'],
   openGraph: {
     title: '9th Island',
@@ -16,7 +15,16 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>
