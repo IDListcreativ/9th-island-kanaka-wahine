@@ -1,60 +1,52 @@
 # 9th Island Kanaka Wahine
 
-Community platform for the Hawaiian and Pacific Islander community in Las Vegas.
+Community platform prototype for the Hawaiian and Pacific Islander community in Las Vegas.
 
-## 🌺 About
+## About
 
-A modern, mobile-first web application that serves as a central digital hub for the Hawaiian and Pacific Islander community in Las Vegas. The platform enables:
+9th Island is a mobile-first frontend prototype that serves as a central digital hub for Hawaiian and Pacific Islander community discovery in Las Vegas. The current build is intentionally frontend-only so users can validate navigation, content, and workflows before backend development begins.
 
-- **Vendors**: Showcase local businesses and manage profiles
-- **Community Members**: Discover events, connect with others, and support local
-- **Events**: Create and manage community gatherings
-- **Marketplace**: Buy and sell local handmade goods
+The prototype supports:
 
-## 🛠️ Tech Stack
+- Vendors: discover local food, craft, wellness, and service providers.
+- Events: browse community events and RSVP-style flows.
+- Gatherings: find recurring meetups, park days, coffee hours, and family circles.
+- Businesses: explore local professional services and island-owned businesses.
+- Organizations: connect with nonprofits, cultural groups, youth programs, and mutual aid teams.
+- Marketplace: browse and create local listings for goods and services.
 
-- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
-- **Backend**: Supabase (PostgreSQL, Auth, Realtime, Storage)
-- **Deployment**: Vercel
-- **Icons**: Lucide React
-- **Performance**: Vercel Speed Insights
+## Tech Stack
 
-## 📋 Features
+- Frontend: Next.js 14, React 18, TypeScript, Tailwind CSS
+- State: mocked data with localStorage persistence
+- Icons: Lucide React
+- Deployment: Vercel
+- Performance: Vercel Speed Insights
 
-### Home Feed
-- Featured vendors
-- Upcoming community events
-- Quick search
-- Community announcements
+## Current Prototype Features
 
-### Vendor Directory
-- Business profiles with photos
-- Categories (Food, Crafts, Services, etc.)
-- Ratings and reviews
-- Location and hours
-- Contact information
+- Functional frontend routing for all major navigation links
+- Dynamic detail pages for vendors, events, gatherings, businesses, organizations, and marketplace listings
+- Local CRUD-style create, edit, and delete flows
+- Mock authentication screens for sign in, sign up, forgot password, and profile editing
+- Search, filtering, sorting, and favorites
+- Interactive frontend map for vendors, events, gatherings, businesses, and organizations
+- Mock notifications and mock messaging
+- Mock admin moderation dashboard with report review actions
+- Community feed with local post creation and deletion
+- Mobile-first responsive navigation and layouts
+- Loading skeletons and empty states
 
-### Community Events
-- Event creation and RSVPs
-- Date, time, location, description
-- Photo galleries
-- Comment sections
+## Backend Status
 
-### Marketplace
-- Buy and sell local products
-- Item categories
-- User profiles
-- Ratings system
+No backend is connected in the current prototype. Supabase SQL files are present as planning assets only. The application does not call Supabase, APIs, databases, or authentication providers yet.
 
-### Additional
-- Interactive community feed
-- Meetup organization
-- Business dashboard
-- Admin moderation tools
+All interactive state is mocked and stored locally in the browser.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
 - npm, pnpm, yarn, or bun
 
@@ -73,7 +65,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open http://localhost:3000.
 
 ### Production Build
 
@@ -82,32 +74,28 @@ npm run build
 npm start
 ```
 
-## 🎨 Design System
+## Design System
 
-- **Ocean**: Blues for primary actions
-- **Sand**: Warm neutrals for accents
-- **Island Green**: Teal for highlights
+- Ocean: blues for primary actions
+- Sand: warm accent color
+- Island green and teal: highlights and brand accents
+- Mobile-first layouts for users arriving from Facebook or other social apps on their phones
 
-## 🚢 Deployment
+## Deployment
 
 ```bash
 vercel deploy
 ```
 
-**Required Environment Variables:**
+Environment variables are reserved for future backend work:
+
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-## 📚 Documentation
+They are not required for the current frontend-only prototype.
 
-- [Next.js Docs](https://nextjs.org/docs)
-- [Supabase Docs](https://supabase.com/docs)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+## License
 
-## 📝 License
+Private repository.
 
-Private repository
-
----
-
-**Built with ❤️ for the Hawaiian and Pacific Islander community in Las Vegas**
+Built for the Hawaiian and Pacific Islander community in Las Vegas.
