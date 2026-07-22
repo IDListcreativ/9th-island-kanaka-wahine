@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Calendar, MapPin, Users } from 'lucide-react'
 import { events } from '@/app/data'
@@ -5,12 +7,15 @@ import { events } from '@/app/data'
 const UPCOMING_EVENTS = events.slice(0, 3)
 
 export default function UpcomingEvents() {
+  const { resources } = useMockApp()
+  const events = resources.events.slice(0, 3)
+
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="bg-white py-16 md:py-24">
       <div className="container-primary">
         <div className="mb-12">
           <h2 className="section-title mb-2">Upcoming Events</h2>
-          <p className="text-gray-600 text-lg">Join the community for celebrations, meetups, and activities</p>
+          <p className="text-lg text-gray-600">Join the community for celebrations, meetups, and activities</p>
         </div>
 
         <div className="space-y-4">
