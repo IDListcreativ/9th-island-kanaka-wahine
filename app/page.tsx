@@ -1,15 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Bell, Heart, Map, MessageCircle, Search, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Heart, Map, Megaphone, MessageCircle, Music, Search, ShieldCheck } from 'lucide-react'
 import PageShell from '@/app/components/PageShell'
 import { resourceConfig, ResourceKind } from '@/app/data/mock'
 import { useMockApp } from '@/app/providers'
 
-const sections: ResourceKind[] = ['vendors', 'events', 'gatherings', 'businesses', 'organizations', 'listings']
+const sections: ResourceKind[] = ['vendors', 'events', 'gatherings', 'businesses', 'organizations', 'musicians', 'listings']
 
 export default function Home() {
-  const { resources, notifications, threads, favorites, loading } = useMockApp()
+  const { resources, notifications, favorites, loading, announcements } = useMockApp()
   const featured = sections.flatMap((kind) => resources[kind].slice(0, 1)).slice(0, 6)
 
   return (
@@ -34,7 +34,8 @@ export default function Home() {
           <div className="mb-6 flex items-end justify-between gap-4"><div><h2 className="text-2xl font-bold text-gray-900">Start here</h2><p className="text-gray-600">Every card links to a working page with local-state interactions.</p></div><Link href="/feed" className="btn-secondary hidden sm:inline-flex">Community feed</Link></div>
           <div className="grid gap-4 md:grid-cols-3">{featured.map((item) => <Link key={`${item.type}-${item.slug}`} href={`${resourceConfig[item.type].path}/${item.slug}`} className="card"><div className={`mb-4 h-24 rounded-lg bg-gradient-to-br ${item.image}`} /><span className="pill">{resourceConfig[item.type].singular}</span><h3 className="mt-3 text-lg font-bold text-gray-900">{item.name}</h3><p className="mt-1 text-sm text-gray-600">{item.subtitle}</p></Link>)}</div>
         </section>
-        <section className="bg-gray-50 py-10 md:py-14"><div className="container-primary grid gap-4 md:grid-cols-4"><Link href="/notifications" className="card"><Bell className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Notifications</h3><p className="mt-1 text-sm text-gray-600">Review mock reminders and community activity.</p></Link><Link href="/messages" className="card"><MessageCircle className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Messages</h3><p className="mt-1 text-sm text-gray-600">Try local message threads and replies.</p></Link><Link href="/favorites" className="card"><Heart className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Favorites</h3><p className="mt-1 text-sm text-gray-600">Saved records persist on this device.</p></Link><Link href="/admin" className="card"><ShieldCheck className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Moderation</h3><p className="mt-1 text-sm text-gray-600">Review reports in a mocked admin queue.</p></Link></div></section>
+        <section className="bg-white py-10 md:py-14"><div className="container-primary"><div className="mb-6 flex items-end justify-between gap-4"><div><h2 className="text-2xl font-bold text-gray-900">Announcements</h2><p className="text-gray-600">Pinned updates for vendors, families, and organizers.</p></div><Link href="/announcements" className="btn-secondary hidden sm:inline-flex">View all</Link></div><div className="grid gap-4 md:grid-cols-2">{announcements.slice(0, 2).map((announcement) => <Link href="/announcements" key={announcement.id} className="card"><div className="flex flex-wrap gap-2"><span className="pill">{announcement.audience}</span>{announcement.pinned && <span className="rounded-full bg-sand-100 px-3 py-1 text-xs font-bold text-gray-900">Pinned</span>}</div><h3 className="mt-3 text-lg font-bold text-gray-900">{announcement.title}</h3><p className="mt-2 text-sm text-gray-600">{announcement.body}</p></Link>)}</div></div></section>
+        <section className="bg-gray-50 py-10 md:py-14"><div className="container-primary grid gap-4 md:grid-cols-5"><Link href="/announcements" className="card"><Megaphone className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Announcements</h3><p className="mt-1 text-sm text-gray-600">Read practical community updates.</p></Link><Link href="/musicians" className="card"><Music className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Musicians</h3><p className="mt-1 text-sm text-gray-600">Find performers and DJs.</p></Link><Link href="/messages" className="card"><MessageCircle className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Messages</h3><p className="mt-1 text-sm text-gray-600">Try local message threads.</p></Link><Link href="/favorites" className="card"><Heart className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Favorites</h3><p className="mt-1 text-sm text-gray-600">Saved records persist.</p></Link><Link href="/admin" className="card"><ShieldCheck className="mb-4 text-ocean-600" /><h3 className="font-bold text-gray-900">Moderation</h3><p className="mt-1 text-sm text-gray-600">Review reports.</p></Link></div></section>
       </main>
     </PageShell>
   )

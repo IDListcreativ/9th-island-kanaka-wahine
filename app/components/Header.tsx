@@ -12,8 +12,10 @@ const navItems = [
   { href: '/gatherings', label: 'Gatherings' },
   { href: '/businesses', label: 'Businesses' },
   { href: '/organizations', label: 'Organizations' },
+  { href: '/musicians', label: 'Musicians' },
   { href: '/map', label: 'Map' },
   { href: '/marketplace', label: 'Marketplace' },
+  { href: '/announcements', label: 'Announcements' },
   { href: '/feed', label: 'Feed' },
 ]
 

@@ -1,4 +1,4 @@
-export type ResourceKind = 'vendors' | 'events' | 'gatherings' | 'businesses' | 'organizations' | 'listings'
+export type ResourceKind = 'vendors' | 'events' | 'gatherings' | 'businesses' | 'organizations' | 'musicians' | 'listings'
 
 export type ResourceItem = {
   id: string
@@ -35,6 +35,14 @@ export type MockNotification = { id: string; title: string; body: string; type: 
 export type MockMessage = { id: string; sender: 'me' | 'them'; body: string; createdAt: string }
 export type MockThread = { id: string; name: string; context: string; unread: number; messages: MockMessage[] }
 export type MockPost = { id: string; author: string; content: string; topic: string; likes: number; comments: number; createdAt: string }
+export type MockAnnouncement = {
+  id: string
+  title: string
+  body: string
+  audience: string
+  pinned: boolean
+  createdAt: string
+}
 export type MockReport = {
   id: string
   resourceKey: string
@@ -51,6 +59,7 @@ export type MockAppState = {
   notifications: MockNotification[]
   threads: MockThread[]
   posts: MockPost[]
+  announcements: MockAnnouncement[]
   reports: MockReport[]
 }
 
@@ -60,6 +69,7 @@ export const resourceConfig: Record<ResourceKind, { singular: string; plural: st
   gatherings: { singular: 'Gathering', plural: 'Gatherings', path: '/gatherings', createLabel: 'Create Gathering', categories: ['Meetup', 'Kupuna', 'Families', 'Music', 'Outdoors'] },
   businesses: { singular: 'Business', plural: 'Businesses', path: '/businesses', createLabel: 'Add Business', categories: ['Restaurant', 'Retail', 'Professional', 'Health', 'Creative'] },
   organizations: { singular: 'Organization', plural: 'Organizations', path: '/organizations', createLabel: 'Add Organization', categories: ['Nonprofit', 'Culture', 'Education', 'Mutual Aid', 'Youth'] },
+  musicians: { singular: 'Musician', plural: 'Musicians', path: '/musicians', createLabel: 'Add Musician', categories: ['Solo Artist', 'Band', 'DJ', 'Hula Music', 'Lessons'] },
   listings: { singular: 'Listing', plural: 'Marketplace', path: '/marketplace', createLabel: 'Sell Item', categories: ['Handmade', 'Food', 'Services', 'Home', 'Instruments'] },
 }
 
@@ -84,6 +94,24 @@ export const initialState: MockAppState = {
   posts: [
     { id: 'post-1', author: 'Malia K.', content: 'Looking for a hula teacher for a youth workshop in Henderson next month. Any recommendations?', topic: 'Recommendations', likes: 18, comments: 6, createdAt: '2026-07-22T07:00:00.000Z' },
     { id: 'post-2', author: 'Noah P.', content: 'We have extra tables available for Sunday market vendors. Message me if your booth needs one.', topic: 'Marketplace', likes: 11, comments: 3, createdAt: '2026-07-21T15:00:00.000Z' },
+  ],
+  announcements: [
+    {
+      id: 'announcement-1',
+      title: 'Vendor interest form closes Friday',
+      body: 'Community vendors interested in the August cultural night should submit booth details before Friday evening so organizers can finalize the floor plan.',
+      audience: 'Vendors',
+      pinned: true,
+      createdAt: now,
+    },
+    {
+      id: 'announcement-2',
+      title: 'School supply drive drop-off',
+      body: 'Aloha Resource Center is collecting notebooks, backpacks, and hygiene kits this weekend in Central Las Vegas.',
+      audience: 'Families',
+      pinned: false,
+      createdAt: '2026-07-21T10:00:00.000Z',
+    },
   ],
   reports: [
     {
@@ -126,6 +154,10 @@ export const initialState: MockAppState = {
     organizations: [
       item({ id: 'org-1', slug: 'aloha-resource-center', type: 'organizations', name: 'Aloha Resource Center', subtitle: 'Mutual aid, referrals, and community navigation', category: 'Mutual Aid', description: 'Volunteer-led organization helping community members find food support, school supplies, emergency aid, and trusted referrals.', location: 'Central Las Vegas', phone: '(702) 555-0101', website: 'https://example.com/aloha-resource', organizer: 'Community board', status: 'active', members: 210, favoriteCount: 77, tags: ['Mutual aid', 'Volunteer', 'Referrals'], highlights: ['Volunteer intake open', 'Resource directory', 'Donation drop-offs'], image: 'from-ocean-700 via-teal-600 to-lime-300' }),
       item({ id: 'org-2', slug: 'pacific-cultural-alliance', type: 'organizations', name: 'Pacific Cultural Alliance', subtitle: 'Cultural education, performances, and youth programming', category: 'Culture', description: 'A network of practitioners, teachers, and volunteers creating cultural education opportunities in Southern Nevada.', location: 'Las Vegas Valley', website: 'https://example.com/pacific-cultural', organizer: 'PCA Committee', status: 'active', members: 148, favoriteCount: 64, tags: ['Culture', 'Youth', 'Classes'], highlights: ['Youth workshops', 'Performer directory', 'School partnerships'], image: 'from-purple-700 via-ocean-600 to-sand-300' }),
+    ],
+    musicians: [
+      item({ id: 'musician-1', slug: 'kai-nalu-trio', type: 'musicians', name: 'Kai Nalu Trio', subtitle: 'Acoustic island music for events and private gatherings', category: 'Band', description: 'Three-piece group playing Hawaiian classics, contemporary island music, and mellow dinner sets for family celebrations, cultural nights, and vendor markets.', location: 'Las Vegas Valley', phone: '(702) 555-0133', website: 'https://example.com/kai-nalu', organizer: 'Makoa Reed', status: 'active', rating: 4.9, reviews: 27, favoriteCount: 36, tags: ['Live music', 'Private events', 'Acoustic'], highlights: ['Two-hour and full-evening sets', 'Sound system available', 'Family-friendly song list'], image: 'from-orange-500 via-ocean-600 to-teal-500' }),
+      item({ id: 'musician-2', slug: 'dj-aloha-vegas', type: 'musicians', name: 'DJ Aloha Vegas', subtitle: 'Island, reggae, old school, and family party sets', category: 'DJ', description: 'Mobile DJ for graduations, birthdays, fundraisers, and cultural events with clean edits, emcee support, and flexible setup options.', location: 'North Las Vegas', phone: '(702) 555-0155', organizer: 'Sione T.', status: 'active', rating: 4.8, reviews: 19, favoriteCount: 28, tags: ['DJ', 'Parties', 'Emcee'], highlights: ['Clean family playlists', 'Wireless microphones', 'Indoor and outdoor setup'], image: 'from-fuchsia-600 via-ocean-700 to-sand-300' }),
     ],
     listings: [
       item({ id: 'listing-1', slug: 'traditional-hawaiian-quilt', type: 'listings', name: 'Traditional Hawaiian Quilt', subtitle: 'Queen size, handmade, green and white', category: 'Handmade', description: 'Hand-stitched quilt made locally. Buyer can pick up near Summerlin or arrange market pickup.', location: 'Summerlin', price: '$450', organizer: 'Kumu Arts', status: 'active', favoriteCount: 18, tags: ['Quilt', 'Handmade', 'Pickup'], highlights: ['Queen size', 'Excellent condition', 'Cash or Venmo'], image: 'from-emerald-700 via-green-500 to-white' }),

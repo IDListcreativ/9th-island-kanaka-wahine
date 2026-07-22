@@ -13,6 +13,8 @@ The prototype supports:
 - Gatherings: find recurring meetups, park days, coffee hours, and family circles.
 - Businesses: explore local professional services and island-owned businesses.
 - Organizations: connect with nonprofits, cultural groups, youth programs, and mutual aid teams.
+- Musicians: find performers, DJs, bands, and instructors for events and family celebrations.
+- Announcements: read practical community updates without turning the app into a social feed.
 - Marketplace: browse and create local listings for goods and services.
 
 ## Tech Stack
@@ -27,6 +29,8 @@ The prototype supports:
 
 - Functional frontend routing for all major navigation links
 - Dynamic detail pages for vendors, events, gatherings, businesses, organizations, and marketplace listings
+- Musician directory and profile pages
+- Community announcements with create, edit, delete, and pin interactions
 - Local CRUD-style create, edit, and delete flows
 - Mock authentication screens for sign in, sign up, forgot password, and profile editing
 - Search, filtering, sorting, and favorites

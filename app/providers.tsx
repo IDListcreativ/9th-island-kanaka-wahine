@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { initialState, MockAppState, MockNotification, MockPost, MockReport, MockThread, MockUser, ResourceItem, ResourceKind } from '@/app/data/mock'
+import { initialState, MockAnnouncement, MockAppState, MockNotification, MockPost, MockReport, MockThread, MockUser, ResourceItem, ResourceKind } from '@/app/data/mock'
 
 const STORAGE_KEY = 'ninth-island-prototype-state-v1'
 
@@ -22,6 +22,10 @@ type MockAppContextValue = MockAppState & {
   markNotificationsRead: () => void
   addPost: (content: string, topic: string) => void
   deletePost: (id: string) => void
+  addAnnouncement: (announcement: Pick<MockAnnouncement, 'title' | 'body' | 'audience'>) => void
+  updateAnnouncement: (id: string, announcement: Pick<MockAnnouncement, 'title' | 'body' | 'audience'>) => void
+  deleteAnnouncement: (id: string) => void
+  toggleAnnouncementPinned: (id: string) => void
   sendMessage: (threadId: string, body: string) => void
   addReport: (item: ResourceItem, reason: string) => void
   updateReportStatus: (id: string, status: MockReport['status']) => void
@@ -69,6 +73,7 @@ function loadStoredState(): MockAppState {
       notifications: parsed.notifications || initialState.notifications,
       threads: parsed.threads || initialState.threads,
       posts: parsed.posts || initialState.posts,
+      announcements: parsed.announcements || initialState.announcements,
       reports: parsed.reports || initialState.reports,
       user: typeof parsed.user === 'undefined' ? initialState.user : parsed.user,
     }
@@ -179,6 +184,38 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const markNotificationsRead = useCallback(() => setState((current) => ({ ...current, notifications: current.notifications.map((notification) => ({ ...notification, read: true })) })), [])
   const addPost = useCallback((content: string, topic: string) => setState((current) => ({ ...current, posts: [{ id: uid('post'), author: current.user?.name || 'Community Member', content, topic, likes: 0, comments: 0, createdAt: new Date().toISOString() }, ...current.posts] })), [])
   const deletePost = useCallback((id: string) => setState((current) => ({ ...current, posts: current.posts.filter((post: MockPost) => post.id !== id) })), [])
+  const addAnnouncement = useCallback((announcement: Pick<MockAnnouncement, 'title' | 'body' | 'audience'>) => {
+    setState((current) => ({
+      ...current,
+      announcements: [
+        {
+          id: uid('announcement'),
+          ...announcement,
+          pinned: false,
+          createdAt: new Date().toISOString(),
+        },
+        ...current.announcements,
+      ],
+    }))
+  }, [])
+  const updateAnnouncement = useCallback((id: string, announcement: Pick<MockAnnouncement, 'title' | 'body' | 'audience'>) => {
+    setState((current) => ({
+      ...current,
+      announcements: current.announcements.map((item) => item.id === id ? { ...item, ...announcement } : item),
+    }))
+  }, [])
+  const deleteAnnouncement = useCallback((id: string) => {
+    setState((current) => ({
+      ...current,
+      announcements: current.announcements.filter((announcement) => announcement.id !== id),
+    }))
+  }, [])
+  const toggleAnnouncementPinned = useCallback((id: string) => {
+    setState((current) => ({
+      ...current,
+      announcements: current.announcements.map((announcement) => announcement.id === id ? { ...announcement, pinned: !announcement.pinned } : announcement),
+    }))
+  }, [])
   const sendMessage = useCallback((threadId: string, body: string) => setState((current) => ({ ...current, threads: current.threads.map((thread: MockThread) => thread.id === threadId ? { ...thread, messages: [...thread.messages, { id: uid('message'), sender: 'me', body, createdAt: new Date().toISOString() }] } : thread) })), [])
   const addReport = useCallback((item: ResourceItem, reason: string) => {
     const now = new Date().toISOString()
@@ -217,7 +254,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     }))
   }, [])
 
-  const value = useMemo(() => ({ ...state, loading, createItem, updateItem, deleteItem, toggleFavorite, isFavorite, signIn, signUp, signOut, updateProfile, addNotification, markNotificationsRead, addPost, deletePost, sendMessage, addReport, updateReportStatus }), [addNotification, addPost, addReport, createItem, deleteItem, deletePost, isFavorite, loading, markNotificationsRead, sendMessage, signIn, signOut, signUp, state, toggleFavorite, updateItem, updateProfile, updateReportStatus])
+  const value = useMemo(() => ({ ...state, loading, createItem, updateItem, deleteItem, toggleFavorite, isFavorite, signIn, signUp, signOut, updateProfile, addNotification, markNotificationsRead, addPost, deletePost, addAnnouncement, updateAnnouncement, deleteAnnouncement, toggleAnnouncementPinned, sendMessage, addReport, updateReportStatus }), [addAnnouncement, addNotification, addPost, addReport, createItem, deleteAnnouncement, deleteItem, deletePost, isFavorite, loading, markNotificationsRead, sendMessage, signIn, signOut, signUp, state, toggleAnnouncementPinned, toggleFavorite, updateAnnouncement, updateItem, updateProfile, updateReportStatus])
 
   return <MockAppContext.Provider value={value}>{children}</MockAppContext.Provider>
 }

@@ -19,6 +19,7 @@ export default function Footer() {
               <li><Link href="/vendors" className="hover:text-ocean-500">Vendors</Link></li>
               <li><Link href="/events" className="hover:text-ocean-500">Events</Link></li>
               <li><Link href="/gatherings" className="hover:text-ocean-500">Gatherings</Link></li>
+              <li><Link href="/musicians" className="hover:text-ocean-500">Musicians</Link></li>
               <li><Link href="/map" className="hover:text-ocean-500">Map</Link></li>
               <li><Link href="/marketplace" className="hover:text-ocean-500">Marketplace</Link></li>
             </ul>
@@ -27,6 +28,7 @@ export default function Footer() {
             <h4 className="mb-4 font-bold text-white">Community</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/feed" className="hover:text-ocean-500">Community Feed</Link></li>
+              <li><Link href="/announcements" className="hover:text-ocean-500">Announcements</Link></li>
               <li><Link href="/organizations" className="hover:text-ocean-500">Organizations</Link></li>
               <li><Link href="/resources" className="hover:text-ocean-500">Resources</Link></li>
               <li><Link href="/about" className="hover:text-ocean-500">About</Link></li>

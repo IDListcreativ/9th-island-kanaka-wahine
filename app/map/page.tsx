@@ -7,13 +7,14 @@ import PageShell from '@/app/components/PageShell'
 import { resourceConfig, ResourceItem, ResourceKind } from '@/app/data/mock'
 import { useMockApp } from '@/app/providers'
 
-const visibleKinds: ResourceKind[] = ['vendors', 'events', 'gatherings', 'businesses', 'organizations']
+const visibleKinds: ResourceKind[] = ['vendors', 'events', 'gatherings', 'businesses', 'organizations', 'musicians']
 const kindLabels: Record<ResourceKind, string> = {
   vendors: 'Vendors',
   events: 'Events',
   gatherings: 'Gatherings',
   businesses: 'Businesses',
   organizations: 'Organizations',
+  musicians: 'Musicians',
   listings: 'Marketplace',
 }
 
