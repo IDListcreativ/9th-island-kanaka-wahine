@@ -1,35 +1,8 @@
 import Link from 'next/link'
 import { Star, MapPin } from 'lucide-react'
+import { vendors } from '@/app/data'
 
-const FEATURED_VENDORS = [
-  {
-    id: '1',
-    name: 'Ono Hawaiian Plate Lunch',
-    category: 'Food',
-    rating: 4.8,
-    reviews: 142,
-    status: 'open',
-    location: 'Downtown Las Vegas',
-  },
-  {
-    id: '2',
-    name: 'Kailua Poke & Sushi',
-    category: 'Poke',
-    rating: 4.6,
-    reviews: 89,
-    status: 'open',
-    location: 'Arts District',
-  },
-  {
-    id: '3',
-    name: 'Malolo Handmade Crafts',
-    category: 'Crafts',
-    rating: 4.9,
-    reviews: 56,
-    status: 'open',
-    location: 'Local Market',
-  },
-]
+const FEATURED_VENDORS = vendors.slice(0, 3)
 
 export default function FeaturedVendors() {
   return (
@@ -66,7 +39,7 @@ export default function FeaturedVendors() {
                 <span className="text-sm">{vendor.location}</span>
               </div>
 
-              <Link href={`/vendors/${vendor.id}`} className="btn-primary w-full text-center">
+              <Link href={`/vendors/${vendor.id}`} className="btn-primary w-full text-center block">
                 View Details
               </Link>
             </div>
@@ -74,9 +47,7 @@ export default function FeaturedVendors() {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/vendors" className="btn-secondary">
-            Browse All Vendors
-          </Link>
+          <Link href="/vendors" className="btn-secondary">Browse All Vendors</Link>
         </div>
       </div>
     </section>

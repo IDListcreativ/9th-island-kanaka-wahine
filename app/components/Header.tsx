@@ -27,6 +27,18 @@ export default function Header() {
           <Link href="/marketplace" className="text-gray-600 hover:text-ocean-600 transition-colors">
             Marketplace
           </Link>
+          <Link href="/feed" className="text-gray-600 hover:text-ocean-600 transition-colors">
+            Feed
+          </Link>
+          <Link href="/messages" className="text-gray-600 hover:text-ocean-600 transition-colors">
+            Messages
+          </Link>
+          <Link href="/notifications" className="text-gray-600 hover:text-ocean-600 transition-colors">
+            Alerts
+          </Link>
+          <Link href="/profile" className="btn-secondary">
+            Profile
+          </Link>
           <Link href="/auth/login" className="btn-primary">
             Sign In
           </Link>
@@ -52,6 +64,18 @@ export default function Header() {
             </Link>
             <Link href="/marketplace" className="text-gray-600 hover:text-ocean-600">
               Marketplace
+            </Link>
+            <Link href="/feed" className="text-gray-600 hover:text-ocean-600">
+              Feed
+            </Link>
+            <Link href="/messages" className="text-gray-600 hover:text-ocean-600">
+              Messages
+            </Link>
+            <Link href="/notifications" className="text-gray-600 hover:text-ocean-600">
+              Alerts
+            </Link>
+            <Link href="/profile" className="btn-secondary w-full text-center">
+              Profile
             </Link>
             <Link href="/auth/login" className="btn-primary w-full text-center">
               Sign In
