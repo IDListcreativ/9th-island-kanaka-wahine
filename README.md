@@ -1,5 +1,4 @@
-# 9th Island Kanaka Wahine
-
+# 9th Island Community
 Community platform prototype for the Hawaiian and Pacific Islander community in Las Vegas.
 
 ## About
